@@ -4,37 +4,51 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #434343;
-    background-image:linear-gradient(#434343, #282828);
-}
-#content{
-    background-color: transparent;
+    background-color: #eee;
+    /*grid line styling*/
     background-image:       linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
     height:100%;
     background-size:50px 50px;
 }
 
-.follow-me {
-position:absolute;
-bottom:10px;
-right:10px;
-text-decoration: none;
-color: #FFFFFF;
-}
-
 #main {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
     margin-top: 15px;
-    padding: 1.5%;
-    box-sizing: border-box;
-    max-width: 1200px;
-    margin: 10px auto;
+    
+    display: grid;
+    grid-template-areas: "card1" "card2" "wide1" "card3" "tall1" "tall1" "card5";
+    grid-template-columns: minmax(100px, 100vw);
+    grid-auto-rows: 250px;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    overflow: hidden;
 }
 
-.main-header {
-    margin-top: 12px;
-    width: 100vw;
-    line-height: 1;
+@media (min-width: 768px) {
+    #main { 
+        grid-template-areas: "card1 card2" "wide1 wide1" "card3 tall1" "card4 tall1" "card5 card5";
+    }
 }
+@media (min-width: 1000px) {
+    
+    #main { 
+        /* grid-template-columns: repeat(minmax(100px, 33vw)); */
+        grid-template-columns: 33% 33% 33%;
+        grid-template-areas: "card1 card2 tall1" "wide1 wide1 tall1" "card3 card4 card5";
+    }
+}
+
+@media (min-width: 1200px) {
+    
+    #main { 
+        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-areas: "card1 card2 tall1 card3" "wide1 wide1 tall1 card4" "card5 card5 tall1 card4";
+    }
+}
+/* 
+.item:nth-of-type(odd) {
+    grid-area: card1;
+}
+.item:nth-of-type(even) {
+    grid-area: card2;
+} */

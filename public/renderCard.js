@@ -31,8 +31,7 @@ function renderCard(item) {
   //   card.price = Math.floor(card.price / 1000) + 'K';
   // }
 
-  var view = `
-    <article class="item">
+  var view = `<article class="item">
       <header>
       <p class="title">🍺 ${card.name}</p>
       </header>
@@ -41,8 +40,7 @@ function renderCard(item) {
           <p>${card.country}</p>
       <p>${card.price} <span>kr</span></p>
       <p>${card.alcohol_vol} <span>%</span></p>
-    </article>
-  `;
+    </article>`;
 
   return view;
 }
