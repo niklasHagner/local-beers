@@ -18,7 +18,6 @@ function getJsonFromApi() {
             reject('no data');
           }
           handleNewsJsonData(data);
-          getBeersFromStore(); //get more data!
           resolve(data);
         });
       })
@@ -92,12 +91,13 @@ async function getLocation(callback) {
 }
 
 async function findStoresByCoordinates() {
-
+  document.querySelector('.loader').classList.remove('hidden');
   getLocation(callback);
 
   function callback(position) {
     if (!position) {
       console.error("no geodata for you");
+      document.querySelector('.loader').classList.remove('hidden');  
       return;
     }
     console.log( position.coords.latitude , position.coords.longitude);
@@ -107,6 +107,7 @@ async function findStoresByCoordinates() {
     .then(handleHttpError)
     .then(response => {
       response.json().then((data) => {
+        document.querySelector('.loader').classList.remove('hidden');
         if (!data) {
           console.error('no data');
           document.querySelector('#news').innerHTML = 'error: no data';
@@ -116,6 +117,7 @@ async function findStoresByCoordinates() {
     })
     .catch(error => {
       console.log(error);
+      document.querySelector('.loader').classList.remove('hidden');
     });
   }
 }
@@ -123,7 +125,8 @@ async function findStoresByCoordinates() {
 function handleFoundStoresData(apiData) {
   let htmlString = "";
   apiData.items.forEach(function(item, ix){
-    let option = `<option value="${item.id}">${item.adress}</option>`;
+    let status = ix === 0 ? `selected` : '';
+    let option = `<option ${status} value="${item.id}">${item.address}</option>`;
     htmlString += option;
   });
   document.querySelector('#storeList').innerHTML = `<select class="selectStoreList">${htmlString}</select><input type="button" class="search-selected-store" onClick="javascript: searchSelectedStore()" value="search selected store"/>`;  
@@ -131,5 +134,5 @@ function handleFoundStoresData(apiData) {
 
 function searchSelectedStore(){
   var val = getSelectedValue();
-  getBeersFromStore();
+  getBeersFromStore(val);
 }

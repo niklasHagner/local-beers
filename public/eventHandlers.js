@@ -52,7 +52,6 @@ function generateAllStoresSelector() {
 
 (function () {
     document.querySelector('.btn-store-by-gps').addEventListener('click', (ev) => findStoresByCoordinates())
-    document.querySelector('.btn-store-by-selector').addEventListener('click', (ev) => generateAllStoresSelector())
     document.querySelector('.btn-news').addEventListener('click', (ev) => getNews())
 
     // document.querySelector('.searchbox-input').addEventListener('keypress', (ev) => search(ev, ev.target), false);
