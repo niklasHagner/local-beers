@@ -1,6 +1,6 @@
 body {
     font-family: monospace;
-    font-size: 14px;
+    font-size: 17px;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -32,13 +32,18 @@ h1 {
 }
 
 @media (min-width: 768px) and (pointer: fine) {
+    body {
+        font-size: 14px;
+    }
     .grid { 
         grid-template-columns: 50% 50%;
         /* grid-template-areas: "card1 card2" "wide1 wide1" "card3 tall1" "card4 tall1" "card5 card5"; */
     }
 }
 @media (min-width: 1000px) {
-    
+    body {
+        font-size: 14px;
+    }
     .grid { 
         grid-template-columns: 33% 33% 33%;
         /* grid-template-areas: "card1 card2 tall1" "wide1 wide1 tall1" "card3 card4 card5"; */
