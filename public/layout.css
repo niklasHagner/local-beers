@@ -1,6 +1,6 @@
 body {
     font-family: monospace;
-    font-size: 20px;
+    font-size: 18px;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -67,10 +67,9 @@ footer {
 
 .buttons {
     grid-auto-columns: 50%;
-    column-width: 200px;   
     padding: 15px;
     display: grid;
-    max-width: 600px;
+    max-width: 1100px;
     text-align: center;
     margin: 0 auto;
 }
@@ -87,7 +86,7 @@ input[type="button"] {
     margin: 10px;
     padding: 30px 30px;
     font-family: monospace;
-    font-size: 20px;
+    font-size: 18px;
 }
 input[type="button"]:hover,
 input[type="button"]:active,

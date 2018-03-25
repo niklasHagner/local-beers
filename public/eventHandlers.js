@@ -11,7 +11,7 @@ function onBlur() {
     deactivateSearchbox(document.querySelector('.searchbox'));
 }
 function search(event, el) {
-    var loader = document.querySelector('.loader');
+   
     if (event.keyCode == 13 && el.value && getJsonFromApi) {
         getJsonFromApi(el.value).then((data) => {
             if (loader)
@@ -51,6 +51,7 @@ function generateAllStoresSelector() {
 }
 
 (function () {
+    window.loader = document.querySelector('.loader');
     document.querySelector('.btn-store-by-gps').addEventListener('click', (ev) => findStoresByCoordinates())
     document.querySelector('.btn-news').addEventListener('click', (ev) => getNews())
 

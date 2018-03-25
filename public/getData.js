@@ -69,12 +69,16 @@ function getBeersFromStore(storeId) {
       if (!data) {
         console.error('no data');
         document.querySelector('#news').innerHTML = 'error: no data';
+        loader.classList.add('hidden');
+        return;
       }
       handleStoreInventoryJsonData(data);
+      loader.classList.add('hidden');
     });
   })
   .catch(error => {
     console.log(error);
+    loader.classList.add('hidden');
   });
 }
 
@@ -91,13 +95,13 @@ async function getLocation(callback) {
 }
 
 async function findStoresByCoordinates() {
-  document.querySelector('.loader').classList.remove('hidden');
+  loader.classList.remove('hidden');
   getLocation(callback);
 
   function callback(position) {
     if (!position) {
       console.error("no geodata for you");
-      document.querySelector('.loader').classList.remove('hidden');  
+      loader.classList.add('hidden');  
       return;
     }
     console.log( position.coords.latitude , position.coords.longitude);
@@ -107,7 +111,7 @@ async function findStoresByCoordinates() {
     .then(handleHttpError)
     .then(response => {
       response.json().then((data) => {
-        document.querySelector('.loader').classList.remove('hidden');
+        loader.classList.add('hidden');
         if (!data) {
           console.error('no data');
           document.querySelector('#news').innerHTML = 'error: no data';
@@ -117,7 +121,7 @@ async function findStoresByCoordinates() {
     })
     .catch(error => {
       console.log(error);
-      document.querySelector('.loader').classList.remove('hidden');
+      loader.classList.add('hidden');
     });
   }
 }
