@@ -13,6 +13,7 @@ h1 {
 
 #main {
     margin: 10px;
+    max-width: 1400px;
 }
 .group {
     border-bottom: 2px dashed;
@@ -30,7 +31,7 @@ h1 {
     overflow: hidden;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (pointer: fine) {
     .grid { 
         grid-template-columns: 50% 50%;
         /* grid-template-areas: "card1 card2" "wide1 wide1" "card3 tall1" "card4 tall1" "card5 card5"; */
