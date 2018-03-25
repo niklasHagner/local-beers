@@ -68,16 +68,16 @@ function getBeersFromStore(storeId) {
       if (!data) {
         console.error('no data');
         document.querySelector('#news').innerHTML = 'error: no data';
-        Array.from(document.querySelectorAll('.loader')).forEach(x => classList.add('hidden'));
+        Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));
         return;
       }
       handleStoreInventoryJsonData(data);
-      Array.from(document.querySelectorAll('.loader')).forEach(x => classList.add('hidden'));
+      Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));
     });
   })
   .catch(error => {
     console.log(error);
-    Array.from(document.querySelectorAll('.loader')).forEach(x => classList.add('hidden'));
+    Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));
 
   });
 }

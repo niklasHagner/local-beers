@@ -59,13 +59,13 @@ function generateAllStoresSelector() {
     var loader = document.querySelector('.loader');
 
     getJsonFromApi().then((data) => {
-        Array.from(document.querySelectorAll('.loader')).forEach(x => classList.add('hidden'));
+        Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));
         // document.querySelector('.searchbox-input').classList.remove('error');
     }).catch((ex) => {
-        Array.from(document.querySelectorAll('.loader')).forEach(x => classList.add('hidden'));
+        Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));
         // document.querySelector('.searchbox-input').classList.add('error');
     })
-    Array.from(document.querySelectorAll('.loader')).forEach(x => classList.add('hidden'));
+    Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));
 })();
 
 function generateLoaderHtml(){
