@@ -6,3 +6,9 @@
 .item .title {
     font-weight: bold;
 }
+.item a,
+.item a:hover,
+.item a:active,
+.item a:visited {
+    color: #333;
+}

@@ -41,7 +41,7 @@ function handleNewsJsonData(apiData) {
     var items = release.items;
     items = items.sort((a,b) => a.price - b.price);
     var headerString = `<header><h2>new releases: <span style="display:inline-block;">${release.first_sale}</span></h2></header>`;
-    var itemString = items.map((x) => renderCard(x)).join("");
+    var itemString = items.map((x) => renderItemView(x)).join("");
     htmlString += `<section class="group">${headerString} <div class="grid">${itemString}<div></section>`;
   });
   document.querySelector('#news').innerHTML = htmlString;
@@ -53,9 +53,8 @@ function handleStoreInventoryJsonData(apiData) {
   let htmlString = "";
   var items = apiData.items;
   var store = apiData.store;
-  items = items.sort((a,b) => a.price - b.price);
   var headerString = `<header><h2>store: <span style="display:inline-block;">${store.address}</span></h2></header>`;
-  var itemString = items.map((x) => renderCard(x)).join("");
+  var itemString = items.map((x) => renderItemView(x)).join("");
   htmlString += `<section class="group">${headerString} <div class="grid">${itemString}<div></section>`;
   document.querySelector('#store').innerHTML = htmlString;  
 }
@@ -69,16 +68,17 @@ function getBeersFromStore(storeId) {
       if (!data) {
         console.error('no data');
         document.querySelector('#news').innerHTML = 'error: no data';
-        loader.classList.add('hidden');
+        Array.from(document.querySelectorAll('.loader')).forEach(x => classList.add('hidden'));
         return;
       }
       handleStoreInventoryJsonData(data);
-      loader.classList.add('hidden');
+      Array.from(document.querySelectorAll('.loader')).forEach(x => classList.add('hidden'));
     });
   })
   .catch(error => {
     console.log(error);
-    loader.classList.add('hidden');
+    Array.from(document.querySelectorAll('.loader')).forEach(x => classList.add('hidden'));
+
   });
 }
 
@@ -139,6 +139,8 @@ function handleFoundStoresData(apiData) {
 }
 
 function searchSelectedStore(){
+  document.querySelector('#storeList').innerHTML += loaderHtml;
   var val = getSelectedValue();
   getBeersFromStore(val);
+  var loaderHtml = generateLoaderHtml();
 }
