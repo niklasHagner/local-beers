@@ -25,7 +25,7 @@ function renderCard(item) {
       <header>
       <p class="title">🍺 ${card.name}</p>
       </header>
-          <p class="rating">⭐ ${card.rating_rb_overall} rating <span>(${card.rating_rb_count} reviews)</span></p>
+          <p class="rating">⭐ ${card.rating_rb_overall} <span>(${card.rating_rb_count} reviews)</span></p>
           <p>${card.producer}</p>
           <p>${card.country}</p>
       <p>${card.price} <span>kr</span></p>

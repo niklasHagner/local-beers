@@ -34,6 +34,9 @@ function handleHttpError(response) {
 
 function handleJsonData(apiData) {
   const data = apiData.release[0].items;
+
+  data = data.sort((a,b) => a.price - b.price);
+
   var htmlString = data.map((x) => renderCard(x)).join("");
   document.querySelector('#main').innerHTML = htmlString;
 }
