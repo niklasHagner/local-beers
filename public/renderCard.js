@@ -17,6 +17,7 @@
 */
 function renderCard(item) {
   var card = item;
+  card.price = Number(card.price).toFixed(2);
 
   var isExpensive = Number(card.price) > 40;
   card.themeColor = isExpensive ? 'red' : 'green';

@@ -16,9 +16,8 @@ html {
   height: 40px;
   margin: 0 auto;
   overflow: hidden;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px dashed;
   background: none;
-  color: #fff;
   perspective: 1800px;
   perspective-origin: 40% 40%;
   transform-style: preserve-3d;
