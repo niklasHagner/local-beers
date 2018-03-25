@@ -1,4 +1,4 @@
-var apiUrl = window.location.protocol + '//' + window.location.pathname + '/search';
+var apiUrl = window.location.origin + '/search';
 
 function getJsonFromApi() {
   var url = `${apiUrl}`;
