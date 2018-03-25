@@ -82,12 +82,13 @@ function getBeersFromStore(storeId) {
 
 async function getLocation() {
   if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
+      var coords = navigator.geolocation.getCurrentPosition(function(position) {
         console.log( position.coords.latitude , position.coords.longitude);
         return { lat: position.coords.latitude, lng: position.coords.longitude };
       });
+      return coords;
   } else {
-      x.innerHTML = "Geolocation is not supported by this browser.";
+      alert("Geolocation is not supported by this browser.");
   }
 }
 
