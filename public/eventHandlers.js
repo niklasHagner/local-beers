@@ -67,3 +67,14 @@ function generateAllStoresSelector() {
     })
     loader.classList.remove('hidden');
 })();
+
+function generateLoaderHtml(){
+    return `<div class="hidden loader">
+        <span>fetching ...</span>
+        <span class="beer">🍺</span>
+        <span class="beer">🍺</span>
+        <span class="beer">🍺</span>
+        <span class="beer">🍺</span>
+        <span class="beer">🍺</span>
+    </div>`;
+}

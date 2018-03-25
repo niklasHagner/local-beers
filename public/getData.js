@@ -95,13 +95,14 @@ async function getLocation(callback) {
 }
 
 async function findStoresByCoordinates() {
-  loader.classList.remove('hidden');
+  var loaderHtml = generateLoaderHtml();
+  document.querySelector('#storeList').innerHTML = loaderHtml;
   getLocation(callback);
 
   function callback(position) {
     if (!position) {
       console.error("no geodata for you");
-      loader.classList.add('hidden');  
+      document.querySelector('.loader').classList.add('hidden');
       return;
     }
     console.log( position.coords.latitude , position.coords.longitude);
@@ -111,17 +112,18 @@ async function findStoresByCoordinates() {
     .then(handleHttpError)
     .then(response => {
       response.json().then((data) => {
-        loader.classList.add('hidden');
+        
+        document.querySelector('.loader').classList.add('hidden');
         if (!data) {
           console.error('no data');
-          document.querySelector('#news').innerHTML = 'error: no data';
+          document.querySelector('#stores').innerHTML = 'error: no data';
         }
         handleFoundStoresData(data);
       });
     })
     .catch(error => {
       console.log(error);
-      loader.classList.add('hidden');
+      document.querySelector('.loader').classList.add('hidden');
     });
   }
 }
