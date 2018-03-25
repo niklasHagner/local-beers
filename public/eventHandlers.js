@@ -28,16 +28,15 @@ function search(event, el) {
 }
 
 (function () {
-    var searchBox = document.querySelector('.searchbox-input');
-    searchBox.addEventListener('keypress', (ev) => search(ev, ev.target), false);
+    // document.querySelector('.searchbox-input').addEventListener('keypress', (ev) => search(ev, ev.target), false);
     var loader = document.querySelector('.loader');
 
     getJsonFromApi().then((data) => {
         loader.classList.add('hidden');
-        document.querySelector('.searchbox-input').classList.remove('error');
+        // document.querySelector('.searchbox-input').classList.remove('error');
     }).catch((ex) => {
         loader.classList.add('hidden');
-        document.querySelector('.searchbox-input').classList.add('error');
+        // document.querySelector('.searchbox-input').classList.add('error');
     })
     loader.classList.remove('hidden');
 })();
