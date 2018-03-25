@@ -1,4 +1,4 @@
-# local-beers
+# local-beers 🍺
 
 * show newest beers (with ratebeer rankings) in Systembolaget's assortment
 * find your closest Systembolag and list noteable beers in stock
