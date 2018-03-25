@@ -34,6 +34,6 @@ function handleHttpError(response) {
 
 function handleJsonData(apiData) {
   const data = apiData.release[0].items;
-  var htmlString = data.map((item) => renderCard(item));
+  var htmlString = data.map((x) => renderCard1(x)).join("");
   document.querySelector('#main').innerHTML = htmlString;
 }
