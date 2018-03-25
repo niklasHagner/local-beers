@@ -11,7 +11,10 @@ h1 {
 }
 
 #main {
-    margin-top: 15px;
+    margin: 10px;
+}
+.group {
+    border-bottom: 2px dashed;
 }
 .grid {
     display: grid;
@@ -21,8 +24,6 @@ h1 {
     grid-row-gap: 15px;
     grid-column-gap: 15px;
     overflow: hidden;
-
-    border-bottom: solid dashed;
 }
 
 @media (min-width: 768px) {
@@ -53,3 +54,16 @@ h1 {
 .item:nth-of-type(even) {
     grid-area: card2;
 } */
+
+.beer {
+    animation: animateScale 0.5s ease-in-out infinite alternate;
+    -webkit-animation: animateScale 0.5s ease-in-out infinite alternate;
+}
+@keyframes animateScale {
+    0% {
+        transform: scale(0.6);
+    }
+    100% {
+        transform: scale(1.0);
+    }
+}

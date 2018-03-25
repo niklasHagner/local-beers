@@ -38,9 +38,9 @@ function handleJsonData(apiData) {
   apiData.release.forEach(function(release, ix){
     var items = release.items;
     items = items.sort((a,b) => a.price - b.price);
-    var headerString = `<header><h2>säljstart: ${release.first_sale}</h2></header>`;
+    var headerString = `<header><h2>new releases: ${release.first_sale}</h2></header>`;
     var itemString = items.map((x) => renderCard(x)).join("");
-    htmlString += `<section>${headerString} <div class="grid">${itemString}<div></section>`;
+    htmlString += `<section class="group">${headerString} <div class="grid">${itemString}<div></section>`;
   });
   document.querySelector('#main').innerHTML = htmlString;  
 }
