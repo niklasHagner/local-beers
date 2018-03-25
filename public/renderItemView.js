@@ -34,6 +34,7 @@ function renderItemView(item) {
 
   var view = `
     <article class="item">
+      ${img}
       <header>
         <p class="title">🍺 ${card.name}</p>
       </header>
