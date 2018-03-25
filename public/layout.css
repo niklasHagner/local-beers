@@ -84,7 +84,7 @@ input[type="button"] {
     background-color: white;
     outline: none;
     margin: 10px;
-    padding: 30px 30px;
+    height: 40px;
     font-family: monospace;
     font-size: 18px;
 }
@@ -100,7 +100,6 @@ input[type="button"].active {
         grid-template-columns: 50% 50%;
     }
     input[type="button"] {
-        padding: 10px;
         font-size: 1em;
     }
 }
