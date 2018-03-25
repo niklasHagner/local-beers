@@ -68,17 +68,16 @@ function getBeersFromStore(storeId) {
       if (!data) {
         console.error('no data');
         document.querySelector('#news').innerHTML = 'error: no data';
-        Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));
+        hideLoaders();
         return;
       }
       handleStoreInventoryJsonData(data);
-      Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));
+      hideLoaders();
     });
   })
   .catch(error => {
     console.log(error);
-    Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));
-
+    hideLoaders();
   });
 }
 
@@ -139,8 +138,8 @@ function handleFoundStoresData(apiData) {
 }
 
 function searchSelectedStore(){
-  document.querySelector('#storeList').innerHTML += loaderHtml;
-  var val = getSelectedValue();
-  getBeersFromStore(val);
   var loaderHtml = generateLoaderHtml();
+  document.querySelector('#storeList').innerHTML += loaderHtml;
+  var val = getSelectedStore();
+  getBeersFromStore(val);
 }

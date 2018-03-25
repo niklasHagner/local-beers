@@ -11,36 +11,19 @@ function onBlur() {
     deactivateSearchbox(document.querySelector('.searchbox'));
 }
 function search(event, el) {
-   
     if (event.keyCode == 13 && el.value && getJsonFromApi) {
         getJsonFromApi(el.value).then((data) => {
-            if (loader)
-                loader.classList.add('hidden');
+            hideLoaders();
             document.querySelector('.searchbox-input').classList.remove('error');
         }).catch((ex) => {
-            if (loader)
-                loader.classList.add('hidden');
+            hideLoaders();
             document.querySelector('.searchbox-input').classList.add('error');
         })
-        if (loader)
-            loader.classList.remove('hidden');
+        showLoaders();
     }
 }
 
-function setUpEventForSelect() {
-    // document.querySelector('.selectStoreList').addEventListener('change', warn, true);
-    // function warn(e) {
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //     if (e.target) {
-    //         console.log(e.target);
-    //     }
-    //     var selected = e.target.options[e.target.selectedIndex].value;
-    //     console.log(selected);
-    // }
-}
-
-function getSelectedValue(){
+function getSelectedStore(){
     var e = document.querySelector('.selectStoreList');
     var selectedValue = e.options[e.selectedIndex].value;
     return selectedValue;
@@ -50,26 +33,8 @@ function generateAllStoresSelector() {
     console.error("not implemented");
 }
 
-(function () {
-    window.loader = document.querySelector('.loader');
-    document.querySelector('.btn-store-by-gps').addEventListener('click', (ev) => findStoresByCoordinates())
-    document.querySelector('.btn-news').addEventListener('click', (ev) => getNews())
-
-    // document.querySelector('.searchbox-input').addEventListener('keypress', (ev) => search(ev, ev.target), false);
-    var loader = document.querySelector('.loader');
-
-    getJsonFromApi().then((data) => {
-        Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));
-        // document.querySelector('.searchbox-input').classList.remove('error');
-    }).catch((ex) => {
-        Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));
-        // document.querySelector('.searchbox-input').classList.add('error');
-    })
-    Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));
-})();
-
 function generateLoaderHtml(){
-    return `<div class="hidden loader">
+    return `<div class="loader">
         <span>fetching ...</span>
         <span class="beer">🍺</span>
         <span class="beer">🍺</span>
@@ -78,3 +43,28 @@ function generateLoaderHtml(){
         <span class="beer">🍺</span>
     </div>`;
 }
+
+function hideLoaders() {
+    Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.add('hidden'));    
+}
+function showLoaders() {
+    Array.from(document.querySelectorAll('.loader')).forEach(x => x.classList.remove('hidden'));    
+}
+
+(function () {
+    showLoaders();
+    document.querySelector('.btn-store-by-gps').addEventListener('click', (ev) => findStoresByCoordinates())
+    document.querySelector('.btn-news').addEventListener('click', (ev) => getNews())
+
+    // document.querySelector('.searchbox-input').addEventListener('keypress', (ev) => search(ev, ev.target), false);
+    var loader = document.querySelector('.loader');
+
+    getJsonFromApi().then((data) => {
+        hideLoaders();
+        // document.querySelector('.searchbox-input').classList.remove('error');
+    }).catch((ex) => {
+        hideLoaders();
+        // document.querySelector('.searchbox-input').classList.add('error');
+    })
+    showLoaders();
+})();
