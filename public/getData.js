@@ -55,8 +55,8 @@ function handleStoreInventoryJsonData(apiData) {
   document.querySelector('#store').innerHTML = htmlString;  
 }
 
-function getBeersFromStore() {
-  let url = `${apiUrl}/storeInventory`;
+function getBeersFromStore(storeId) {
+  let url = `${apiUrl}/storeInventory?storeId=${storeId}`;
   fetch(url)
   .then(handleHttpError)
   .then(response => {
@@ -71,4 +71,47 @@ function getBeersFromStore() {
   .catch(error => {
     console.log(error);
   });
+}
+
+
+function getLocation() {
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        console.log( position.coords.latitude , position.coords.longitude);
+        return { lat: position.coords.latitude, lng: position.coords.longitude };
+      });
+  } else {
+      x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+async function findStoresByCoordinates() {
+
+  var coords = getLocation();
+  if (!coords) return;
+  
+  let url = `${apiUrl}/findStoresByCoordinates?lat=${lat}&lng=${lng}`;
+  fetch(url)
+  .then(handleHttpError)
+  .then(response => {
+    response.json().then((data) => {
+      if (!data) {
+        console.error('no data');
+        document.querySelector('#news').innerHTML = 'error: no data';
+      }
+      handleFoundStoresData(data);
+    });
+  })
+  .catch(error => {
+    console.log(error);
+  });
+}
+
+function handleFoundStoresData(apiData) {
+  let htmlString = "";
+  apiData.items.forEach(function(item, ix){
+    let option = `<option value="${item.id}">${item.adress}</option>`;
+    htmlString += option;
+  });
+  document.querySelector('#storeList').innerHTML = `<select class="selectStoreList">${htmlString}</select>`;  
 }

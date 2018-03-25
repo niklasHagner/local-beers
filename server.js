@@ -25,13 +25,34 @@ app.get('/newBeers', function (req, res) { //serve json
 })
 
 app.get('/storeInventory', function (req, res) { //serve json
-    var storeId = 983;
+    var queryParams = req && req.query;
+    var storeId = queryParams.storeId ? queryParams.storeId : 983;
+
     var url = baseUrl + `api/json/1.0/inventoryForStore.json?id=${storeId}`;
     requestAsync(url).then((data) => {
         res.setHeader('Content-Type', 'application/json');
         res.send(data);
     });
 })
+
+app.get('/findStoresByCoordinates', function (req, res) { //serve json
+
+    var queryParams = req && req.query;
+    if (!queryParams || !queryParams.lat || !queryParams.lng) {
+        res.status(400).send('Error. API expects params. Example: ?lat=1.22&lng=3.223');
+        return;
+    }
+    const {lat, lng}  = queryParams;
+
+    // var lng = '18.015704';
+    // var lat = '59.333498';
+    var url = baseUrl + `api/json/1.0/searchStore.json?lat=${lat}&lng=${lng}&limit=5`;
+    requestAsync(url).then((data) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(data);
+    });
+})
+
 
 function requestAsync(url) {
     return new Promise(function (resolve, reject) {

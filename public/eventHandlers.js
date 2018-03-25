@@ -28,6 +28,10 @@ function search(event, el) {
 }
 
 (function () {
+
+    document.querySelector('.btn-store-by-selector').addEventListener('click', (ev) => getBeersFromStore())
+    document.querySelector('.btn-news').addEventListener('click', (ev) => clickGetBeersFromStore())
+
     // document.querySelector('.searchbox-input').addEventListener('keypress', (ev) => search(ev, ev.target), false);
     var loader = document.querySelector('.loader');
 
