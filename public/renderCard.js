@@ -34,7 +34,3 @@ function renderCard(item) {
 
   return view;
 }
-
-function renderAllCards1(data) {
-  return data.map((x) => renderCard1(x)).join("");
-}
