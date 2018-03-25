@@ -80,11 +80,10 @@ function getBeersFromStore(storeId) {
 }
 
 
-async function getLocation() {
+async function getLocation(callback) {
   if (navigator.geolocation) {
       var coords = navigator.geolocation.getCurrentPosition(function(position) {
-        console.log( position.coords.latitude , position.coords.longitude);
-        return { lat: position.coords.latitude, lng: position.coords.longitude };
+        callback(position);
       });
       return coords;
   } else {
@@ -94,24 +93,31 @@ async function getLocation() {
 
 async function findStoresByCoordinates() {
 
-  var coords = await getLocation();
-  if (!coords) return;
-  
-  let url = `${apiUrl}/findStoresByCoordinates?lat=${lat}&lng=${lng}`;
-  fetch(url)
-  .then(handleHttpError)
-  .then(response => {
-    response.json().then((data) => {
-      if (!data) {
-        console.error('no data');
-        document.querySelector('#news').innerHTML = 'error: no data';
-      }
-      handleFoundStoresData(data);
+  getLocation(callback);
+
+  function callback(position) {
+    if (!position) {
+      console.error("no geodata for you");
+      return;
+    }
+    console.log( position.coords.latitude , position.coords.longitude);
+    let coords = { lat: position.coords.latitude, lng: position.coords.longitude };
+    let url = `${apiUrl}/findStoresByCoordinates?lat=${coords.lat}&lng=${coords.lng}`;
+    fetch(url)
+    .then(handleHttpError)
+    .then(response => {
+      response.json().then((data) => {
+        if (!data) {
+          console.error('no data');
+          document.querySelector('#news').innerHTML = 'error: no data';
+        }
+        handleFoundStoresData(data);
+      });
+    })
+    .catch(error => {
+      console.log(error);
     });
-  })
-  .catch(error => {
-    console.log(error);
-  });
+  }
 }
 
 function handleFoundStoresData(apiData) {
