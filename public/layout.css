@@ -11,9 +11,9 @@ h1 {
 }
 
 #main {
-    display: grid;
     margin-top: 15px;
-    
+}
+.grid {
     display: grid;
     grid-template-columns: 100%;
     /* grid-template-areas: "card1" "card2" "wide1" "card3" "tall1" "tall1" "card5"; */
@@ -21,17 +21,19 @@ h1 {
     grid-row-gap: 15px;
     grid-column-gap: 15px;
     overflow: hidden;
+
+    border-bottom: solid dashed;
 }
 
 @media (min-width: 768px) {
-    #main { 
+    .grid { 
         grid-template-columns: 50% 50%;
         /* grid-template-areas: "card1 card2" "wide1 wide1" "card3 tall1" "card4 tall1" "card5 card5"; */
     }
 }
 @media (min-width: 1000px) {
     
-    #main { 
+    .grid { 
         grid-template-columns: 33% 33% 33%;
         /* grid-template-areas: "card1 card2 tall1" "wide1 wide1 tall1" "card3 card4 card5"; */
     }
@@ -39,7 +41,7 @@ h1 {
 
 @media (min-width: 1200px) {
     
-    #main { 
+    .grid { 
         grid-template-columns: 25% 25% 25% 25%;
         /* grid-template-areas: "card1 card2 tall1 card3" "wide1 wide1 tall1 card4" "card5 card5 tall1 card4"; */
     }

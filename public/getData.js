@@ -33,10 +33,17 @@ function handleHttpError(response) {
 }
 
 function handleJsonData(apiData) {
-  const data = apiData.release[0].items;
 
-  data = data.sort((a,b) => a.price - b.price);
+  let htmlString = "";
+  apiData.forEach(function(data, ix){
+    release = apiData.release[ix];
 
-  var htmlString = data.map((x) => renderCard(x)).join("");
-  document.querySelector('#main').innerHTML = htmlString;
+    var items = release.items;
+
+    items = items.sort((a,b) => a.price - b.price);
+    var headerString = `<header><h2>säljstart: ${release.first_sale}</h2></header>`;
+    var itemString = items.map((x) => renderCard(x)).join("");
+    htmlString += `<section>${headerString} <div class="grid">${itemString}<div></section>`;
+  });
+  document.querySelector('#main').innerHTML = htmlString;  
 }
