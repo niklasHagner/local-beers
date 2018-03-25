@@ -44,5 +44,7 @@
     display: block;
 }
 .loader.hidden .beer {
+    animation: none;
+    visibility: hidden;
     animation-fill-mode: none; /*necessary to override the fill-mode which sets visibility:visible */
 }

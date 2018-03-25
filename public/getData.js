@@ -40,7 +40,7 @@ function handleNewsJsonData(apiData) {
   apiData.release.forEach(function(release, ix){
     var items = release.items;
     items = items.sort((a,b) => a.price - b.price);
-    var headerString = `<header><h2>new releases: ${release.first_sale}</h2></header>`;
+    var headerString = `<header><h2>new releases: <span style="display:inline-block;">${release.first_sale}</span></h2></header>`;
     var itemString = items.map((x) => renderCard(x)).join("");
     htmlString += `<section class="group">${headerString} <div class="grid">${itemString}<div></section>`;
   });
@@ -54,7 +54,7 @@ function handleStoreInventoryJsonData(apiData) {
   var items = apiData.items;
   var store = apiData.store;
   items = items.sort((a,b) => a.price - b.price);
-  var headerString = `<header><h2>store: ${store.address}</h2></header>`;
+  var headerString = `<header><h2>store: <span style="display:inline-block;">${store.address}</span></h2></header>`;
   var itemString = items.map((x) => renderCard(x)).join("");
   htmlString += `<section class="group">${headerString} <div class="grid">${itemString}<div></section>`;
   document.querySelector('#store').innerHTML = htmlString;  
