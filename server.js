@@ -9,8 +9,8 @@ var baseUrl = tpbUrl
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) { //serve html
-    // res.setHeader('Content-Type', 'text/html');
-    res.sendfile(__dirname + '/home.html');
+    res.setHeader('Content-Type', 'text/html');
+    res.sendfile(__dirname + '/index.html');
 });
 app.get('/test', function (req, res) { //serve html
     res.send('testing');
