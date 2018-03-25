@@ -27,10 +27,33 @@ function search(event, el) {
     }
 }
 
-(function () {
+function setUpEventForSelect() {
+    // document.querySelector('.selectStoreList').addEventListener('change', warn, true);
+    // function warn(e) {
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     if (e.target) {
+    //         console.log(e.target);
+    //     }
+    //     var selected = e.target.options[e.target.selectedIndex].value;
+    //     console.log(selected);
+    // }
+}
 
-    document.querySelector('.btn-store-by-selector').addEventListener('click', (ev) => getBeersFromStore())
-    document.querySelector('.btn-news').addEventListener('click', (ev) => clickGetBeersFromStore())
+function getSelectedValue(){
+    var e = document.querySelector('.selectStoreList');
+    var selectedValue = e.options[e.selectedIndex].value;
+    return selectedValue;
+}
+
+function generateAllStoresSelector() {
+    console.error("not implemented");
+}
+
+(function () {
+    document.querySelector('.btn-store-by-gps').addEventListener('click', (ev) => findStoresByCoordinates())
+    document.querySelector('.btn-store-by-selector').addEventListener('click', (ev) => generateAllStoresSelector())
+    document.querySelector('.btn-news').addEventListener('click', (ev) => getNews())
 
     // document.querySelector('.searchbox-input').addEventListener('keypress', (ev) => search(ev, ev.target), false);
     var loader = document.querySelector('.loader');

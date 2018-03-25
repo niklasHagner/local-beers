@@ -1,5 +1,9 @@
 var apiUrl = window.location.origin;
 
+function getNews(){
+  getJsonFromApi();
+}
+
 function getJsonFromApi() {
   let url = `${apiUrl}/newBeers`;
 
@@ -41,7 +45,9 @@ function handleNewsJsonData(apiData) {
     var itemString = items.map((x) => renderCard(x)).join("");
     htmlString += `<section class="group">${headerString} <div class="grid">${itemString}<div></section>`;
   });
-  document.querySelector('#news').innerHTML = htmlString;  
+  document.querySelector('#news').innerHTML = htmlString;
+
+  document.querySelector('.btn-news').value = 'new releases ✓';
 }
 
 function handleStoreInventoryJsonData(apiData) {
@@ -74,7 +80,7 @@ function getBeersFromStore(storeId) {
 }
 
 
-function getLocation() {
+async function getLocation() {
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         console.log( position.coords.latitude , position.coords.longitude);
@@ -87,7 +93,7 @@ function getLocation() {
 
 async function findStoresByCoordinates() {
 
-  var coords = getLocation();
+  var coords = await getLocation();
   if (!coords) return;
   
   let url = `${apiUrl}/findStoresByCoordinates?lat=${lat}&lng=${lng}`;
@@ -113,5 +119,10 @@ function handleFoundStoresData(apiData) {
     let option = `<option value="${item.id}">${item.adress}</option>`;
     htmlString += option;
   });
-  document.querySelector('#storeList').innerHTML = `<select class="selectStoreList">${htmlString}</select>`;  
+  document.querySelector('#storeList').innerHTML = `<select class="selectStoreList">${htmlString}</select><input type="button" class="search-selected-store" onClick="javascript: searchSelectedStore()" value="search selected store"/>`;  
+}
+
+function searchSelectedStore(){
+  var val = getSelectedValue();
+  getBeersFromStore();
 }
