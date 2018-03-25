@@ -1,5 +1,5 @@
 .item {
-    padding: 5px 10px;
+    padding: 5px 10px 5px 50px;
     font-family: monospace;
     color: #333;
 }
@@ -11,4 +11,10 @@
 .item a:active,
 .item a:visited {
     color: #333;
+}
+
+.item img {
+    width: 50px;
+    margin-left: -50px;
+    float: left;
 }
