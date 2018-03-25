@@ -35,11 +35,8 @@ function handleHttpError(response) {
 function handleJsonData(apiData) {
 
   let htmlString = "";
-  apiData.forEach(function(data, ix){
-    release = apiData.release[ix];
-
+  apiData.release.forEach(function(release, ix){
     var items = release.items;
-
     items = items.sort((a,b) => a.price - b.price);
     var headerString = `<header><h2>säljstart: ${release.first_sale}</h2></header>`;
     var itemString = items.map((x) => renderCard(x)).join("");
