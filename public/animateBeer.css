@@ -1,0 +1,39 @@
+@keyframes animateScale {
+    0% {
+        visibility: visible;
+        transform: scale(0);
+    }
+    100% {
+        visibility: visible;
+        transform: scale(1);
+    }
+}
+
+.beer {
+    display: inline-block;
+    animation: animateScale 1s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+    z-index: 2;
+    visibility: hidden;
+}
+
+.beer:nth-of-type(1) {
+    animation-delay: 0.25s;
+}
+
+.beer:nth-of-type(2) {
+    animation-delay: 0.5s;
+}
+
+.beer:nth-of-type(3) {
+    animation-delay: 0.75s;
+}
+
+.beer:nth-of-type(4) {
+    animation-delay: 1s;
+}
+
+.beer:nth-of-type(5) {
+    animation-delay: 1.25s;
+}
