@@ -69,10 +69,11 @@ html {
 }
 
 .loader {
+  text-align: center;
   display: block;
   clear: both;
   margin: auto;
 }
 .loader rect {
-  fill: #76daff;
+  fill: yellow;
 }
