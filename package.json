@@ -1,0 +1,25 @@
+{
+    "name": "systembevakaren-api",
+    "version": "1.0.0",
+    "description": "Call systembevakaren",
+    "license": "MIT",
+    "jest": {
+        "testEnvironment": "node"
+    },
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "latest",
+        "request": "latest",
+        "cheerio": "latest"
+    },
+    "engines": {
+        "node": ">=4.x",
+        "npm": ">=3.x"
+    },
+    "devEngines": {
+        "node": ">=4.x",
+        "npm": ">=3.x"
+    }
+}

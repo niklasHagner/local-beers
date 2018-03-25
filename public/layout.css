@@ -1,0 +1,22 @@
+body {
+    background: #525A75;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    padding: 1.5%;
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 10px auto;
+}
+
+.main-header {
+    margin-top: 12px;
+    width: 100vw;
+    line-height: 1;
+}
