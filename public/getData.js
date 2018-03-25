@@ -1,4 +1,4 @@
-var apiUrl = 'https://damp-garden-38263.herokuapp.com/search';
+var apiUrl = window.location.hostname + '/search';
 
 function getJsonFromApi() {
   var url = `${apiUrl}`;
