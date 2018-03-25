@@ -19,17 +19,7 @@ function renderCard(item) {
   var card = item;
 
   var isExpensive = Number(card.price) > 40;
-  // card.id = 0;
   card.themeColor = isExpensive ? 'red' : 'green';
-  // card.bg = 'http://www.wemakenice.org/media/DarkGradient-0x500.jpg';
-  // card.rating = 1; card.ratingCount = 40;
-  // card.reqDl = 'abc';
-  // card.fromStreet = 'X-street';
-  // card.toStreet = 'Y-Street';
-  // card.price = Number(item.seeders) + Number(item.leechers)
-  // if (card.price > 999) {
-  //   card.price = Math.floor(card.price / 1000) + 'K';
-  // }
 
   var view = `<article class="item">
       <header>
@@ -46,9 +36,5 @@ function renderCard(item) {
 }
 
 function renderAllCards1(data) {
-  var htmlString = '';
-  data.forEach((item) => {
-    htmlString += renderCard1(item);
-  });
-  return htmlString;
+  return data.map((x) => renderCard1(x)).join("");
 }
