@@ -3,8 +3,7 @@ var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
 var app = express();
-var tpbUrl = 'https://systembevakningsagenten.se/api/json/2.0/newProducts.json'
-var baseUrl = tpbUrl
+var baseUrl = 'https://systembevakningsagenten.se/'
 
 app.use(express.static(__dirname + '/public'));
 
@@ -17,13 +16,21 @@ app.get('/test', function (req, res) { //serve html
 });
 
 
-app.get('/search', function (req, res) { //serve json
-    var url = baseUrl;
+app.get('/newBeers', function (req, res) { //serve json
+    var url = baseUrl + 'api/json/2.0/newProducts.json';
     requestAsync(url).then((data) => {
         res.setHeader('Content-Type', 'application/json');
         res.send(data);
     });
+})
 
+app.get('/storeInventory', function (req, res) { //serve json
+    var storeId = 983;
+    var url = baseUrl + `api/json/1.0/inventoryForStore.json?id=${storeId}`;
+    requestAsync(url).then((data) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(data);
+    });
 })
 
 function requestAsync(url) {
@@ -43,5 +50,5 @@ function requestAsync(url) {
 
 var port = process.env.PORT || 8081;
 app.listen(port);
-console.log('Running search-server on port ' + port);
+console.log('Running server on port ' + port);
 exports = module.exports = app;

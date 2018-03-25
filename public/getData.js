@@ -1,20 +1,20 @@
-var apiUrl = window.location.origin + '/search';
+var apiUrl = window.location.origin;
 
 function getJsonFromApi() {
-  var url = `${apiUrl}`;
+  let url = `${apiUrl}/newBeers`;
 
   return new Promise((resolve, reject) => {
     fetch(url)
       .then(handleHttpError)
       .then(response => {
-        console.log("ok");
         response.json().then((data) => {
           if (!data) {
             console.error('no data');
-            document.querySelector('#main').innerHTML = 'error: no data';
+            document.querySelector('#news').innerHTML = 'error: no data';
             reject('no data');
           }
-          handleJsonData(data);
+          handleNewsJsonData(data);
+          getBeersFromStore(); //get more data!
           resolve(data);
         });
       })
@@ -32,8 +32,7 @@ function handleHttpError(response) {
   return response;
 }
 
-function handleJsonData(apiData) {
-
+function handleNewsJsonData(apiData) {
   let htmlString = "";
   apiData.release.forEach(function(release, ix){
     var items = release.items;
@@ -42,5 +41,34 @@ function handleJsonData(apiData) {
     var itemString = items.map((x) => renderCard(x)).join("");
     htmlString += `<section class="group">${headerString} <div class="grid">${itemString}<div></section>`;
   });
-  document.querySelector('#main').innerHTML = htmlString;  
+  document.querySelector('#news').innerHTML = htmlString;  
+}
+
+function handleStoreInventoryJsonData(apiData) {
+  let htmlString = "";
+  var items = apiData.items;
+  var store = apiData.store;
+  items = items.sort((a,b) => a.price - b.price);
+  var headerString = `<header><h2>store: ${store.address}</h2></header>`;
+  var itemString = items.map((x) => renderCard(x)).join("");
+  htmlString += `<section class="group">${headerString} <div class="grid">${itemString}<div></section>`;
+  document.querySelector('#store').innerHTML = htmlString;  
+}
+
+function getBeersFromStore() {
+  let url = `${apiUrl}/storeInventory`;
+  fetch(url)
+  .then(handleHttpError)
+  .then(response => {
+    response.json().then((data) => {
+      if (!data) {
+        console.error('no data');
+        document.querySelector('#news').innerHTML = 'error: no data';
+      }
+      handleStoreInventoryJsonData(data);
+    });
+  })
+  .catch(error => {
+    console.log(error);
+  });
 }
