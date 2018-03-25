@@ -26,8 +26,9 @@ function renderItemView(item) {
   var rating = card.rating_rb_overall ? `<p class="rating">⭐ ${card.rating_rb_overall} <span>(${card.rating_rb_count} reviews)</span></p>` : '';
   var producer = card.producer ? `<p>${card.producer}</p>` : '';
   var country = card.country ? `<p>${card.country}</p>` : '';
-  var price = card.price ? `<p>${card.price} <span>kr</span></p>` : '';
-  var alcohol = card.alcohol_vol ? `<p>${card.alcohol_vol} <span>%</span></p>` : '';
+  var price = card.price ? `|<span>${card.price} <span>kr</span></span>` : '';
+  var alcohol = card.alcohol_vol ? ` | <span>${card.alcohol_vol} <span>%</span></span>` : '';
+  var price_and_alcohol = price != '' ? `<p>${price} ${alcohol}</p>` : '';
   var systembolagetlink =  card.sysid ? `<a target="_blank" href="https://www.ratebeer.com/beer/${item.sysid}">bolaget</a>` : '';
   
   var view = `
@@ -38,8 +39,7 @@ function renderItemView(item) {
       ${rating}
       ${producer}
       ${country}
-      ${price}
-      ${alcohol}
+      ${price_and_alcohol}
     </article>`;
 
   return view;
