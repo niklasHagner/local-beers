@@ -9,7 +9,7 @@ var baseUrl = tpbUrl
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) { //serve html
-    res.setHeader('Content-Type', 'text/html');
+    // res.setHeader('Content-Type', 'text/html');
     res.sendfile(__dirname + '/home.html');
 });
 app.get('/test', function (req, res) { //serve html
@@ -18,18 +18,7 @@ app.get('/test', function (req, res) { //serve html
 
 
 app.get('/search', function (req, res) { //serve json
-
-    // var queryParams = req && req.query;
-    // if (!queryParams || !queryParams.q) {
-    //     res.status(400).send('Error. API expects a q param. Example: ?q=some+word+here');
-    //     return;
-    // }
-    // var q = queryParams.q;
-    // var formattedQuery = q.replace(' ', '%20');
-    //var url = baseUrl + formattedQuery;
-
     var url = baseUrl;
-
     requestAsync(url).then((data) => {
         res.setHeader('Content-Type', 'application/json');
         res.send(data);
