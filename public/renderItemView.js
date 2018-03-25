@@ -30,14 +30,14 @@ function renderItemView(item) {
   var alcohol = card.alcohol_vol ? ` , <span>${card.alcohol_vol} <span>%</span></span>` : '';
   var price_and_alcohol = price != '' ? `<p>${price} ${alcohol}</p>` : '';
   var systembolagetlink =  card.sysid ? `<a target="_blank" href="https://www.ratebeer.com/beer/${item.sysid}">bolaget</a>` : '';
-  var img = card.id ? `<img src="https://systembevakningsagenten.se/images/product/id/${card.id}.jpg">` : '';
+  var img = card.id ? `<img src="https://systembevakningsagenten.se/images/product/id/${card.id}.jpg" onerror="this.style.opacity='0'">` : '';
 
   var view = `
     <article class="item">
-      ${img}
       <header>
-        <p class="title">🍺 ${card.name}</p>
+        <p class="title">${card.name}</p>
       </header>
+      ${img}
       ${rating}
       ${producer}
       ${country}
