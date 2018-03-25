@@ -34,19 +34,13 @@ function renderCard(item) {
   var view = `
     <article class="item">
       <header>
-          <span class="rating">${card.rating_rb_overall}</span>
-          <span>${card.rating_rb_count} ratings</span>
-
-          <p class="title">${card.name}</p>
-          <p>🍺 ${card.producer}</p>
+      <p class="title">🍺 ${card.name}</p>
       </header>
-        
-      <div><p>${card.price} <span>kr</span></p></div>
-      <div><p>${card.alcohol_vol} <span>%</span></p></div>
-
-      <div>
-        <p>${card.country}</p>
-      </div>
+          <p class="rating">⭐ ${card.rating_rb_overall} rating <span>(${card.rating_rb_count} reviews)</span></p>
+          <p>${card.producer}</p>
+          <p>${card.country}</p>
+      <p>${card.price} <span>kr</span></p>
+      <p>${card.alcohol_vol} <span>%</span></p>
     </article>
   `;
 
