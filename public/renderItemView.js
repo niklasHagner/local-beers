@@ -23,7 +23,7 @@ function renderItemView(item) {
   var isExpensive = Number(card.price) > 40;
   card.themeColor = isExpensive ? 'red' : 'green';
 
-  var rating = card.rating_rb_overall ? `<p class="rating">⭐ ${card.rating_rb_overall}"><span>(${card.rating_rb_count} reviews)</span></p>` : '';
+  var rating = card.rating_rb_overall ? `<p class="rating">⭐ ${card.rating_rb_overall} <span>(${card.rating_rb_count} reviews)</span></p>` : '';
   var producer = card.producer ? `<p>${card.producer}</p>` : '';
   var country = card.country ? `<p>${card.country}</p>` : '';
   var price = card.price ? `<p>${card.price} <span>kr</span></p>` : '';
