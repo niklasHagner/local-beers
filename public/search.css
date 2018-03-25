@@ -66,13 +66,3 @@ html {
   font-size: 1.4em;
   color: inherit;
 }
-
-.loader {
-  text-align: center;
-  display: block;
-  clear: both;
-  margin: auto;
-}
-.loader rect {
-  fill: yellow;
-}

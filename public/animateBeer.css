@@ -37,3 +37,12 @@
 .beer:nth-of-type(5) {
     animation-delay: 1.25s;
 }
+
+.loader {
+    height: 30px;
+    text-align: center;
+    display: block;
+}
+.loader.hidden .beer {
+    animation-fill-mode: none; /*necessary to override the fill-mode which sets visibility:visible */
+}
