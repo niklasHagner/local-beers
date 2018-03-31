@@ -27,7 +27,7 @@ h1 {
 
 .grid {
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: 1fr;
     grid-row-gap: 30px;
     grid-column-gap: 15px;
     overflow: hidden;
@@ -38,7 +38,7 @@ h1 {
         font-size: 14px;
     }
     .grid { 
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 1fr 1fr;
     }
 }
 @media (min-width: 1000px) {
@@ -46,14 +46,14 @@ h1 {
         font-size: 14px;
     }
     .grid { 
-        grid-template-columns: 33% 33% 33%;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
 @media (min-width: 1200px) {
     
     .grid { 
-        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
 
@@ -97,7 +97,7 @@ input[type="button"].active {
 
 @media (min-width: 768px) {
     .buttons {
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 1fr 1fr;
     }
     input[type="button"] {
         font-size: 1em;
