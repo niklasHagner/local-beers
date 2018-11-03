@@ -39,6 +39,13 @@ function handleNewsJsonData(apiData) {
   let htmlString = "";
   apiData.release.forEach(function(release, ix){
     var items = release.items;
+    items = items.map((item) => {
+      //The encoding for https://systembevakningsagenten.se/api/json/2.0/newProducts.json is broken
+      //... until they fix it, take a gamble and replace unknown characters with 'ö', because � looks so awful.
+      item.name = item.name.replace(/�/g, "ö");
+      item.producer = item.producer.replace(/�/g, "ö");
+      return item;
+    });
     items = items.sort((a,b) => a.price - b.price);
     var headerString = `<header><h2>🍺 new releases: <span style="display:inline-block;">${release.first_sale}</span></h2></header>`;
     var itemString = items.map((x) => renderItemView(x)).join("");
