@@ -52,8 +52,6 @@ function handleNewsJsonData(apiData) {
     htmlString += `<section class="group">${headerString} <div class="grid">${itemString}<div></section>`;
   });
   document.querySelector('#news').innerHTML = htmlString;
-
-  document.querySelector('.btn-news').value = 'new releases ✓';
 }
 
 function handleStoreInventoryJsonData(apiData) {
@@ -101,7 +99,8 @@ async function getLocation(callback) {
 }
 
 async function findStoresByCoordinates() {
-  var loaderHtml = generateLoaderHtml();
+  document.querySelectorAll(".loader").forEach(x => x.classList.add("hidden"));
+  var loaderHtml = generateLoaderHtml("fetching store by gps");
   document.querySelector('#storeList').innerHTML = loaderHtml;
   getLocation(callback);
 

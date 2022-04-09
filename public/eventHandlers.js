@@ -33,9 +33,10 @@ function generateAllStoresSelector() {
     console.error("not implemented");
 }
 
-function generateLoaderHtml(){
+function generateLoaderHtml(text){
+    text = text ? text : "fetching...";
     return `<div class="loader">
-        <span>fetching ...</span>
+        <span>${text}</span>
         <span class="beer">🍺</span>
         <span class="beer">🍺</span>
         <span class="beer">🍺</span>
@@ -54,7 +55,7 @@ function showLoaders() {
 (function () {
     showLoaders();
     document.querySelector('.btn-store-by-gps').addEventListener('click', (ev) => findStoresByCoordinates())
-    document.querySelector('.btn-news').addEventListener('click', (ev) => getNews())
+    // document.querySelector('.btn-news').addEventListener('click', (ev) => getNews())
 
     // document.querySelector('.searchbox-input').addEventListener('keypress', (ev) => search(ev, ev.target), false);
     var loader = document.querySelector('.loader');

@@ -66,12 +66,9 @@ footer {
 }
 
 .buttons {
-    grid-auto-columns: 100%;
-    padding: 15px;
-    display: grid;
-    max-width: 1100px;
-    text-align: center;
-    margin: 0 auto;
+    position: absolute;
+    top: 2px;
+    right: 2px;
 }
 input {
     -webkit-appearance: none;
@@ -96,9 +93,6 @@ input[type="button"].active {
 }
 
 @media (min-width: 768px) {
-    .buttons {
-        grid-template-columns: 1fr 1fr;
-    }
     input[type="button"] {
         font-size: 1em;
     }
