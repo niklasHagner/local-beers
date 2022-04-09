@@ -27,16 +27,17 @@ function renderItemView(item) {
   var rating = card.rating_rb_overall ? `<p class="rating">${ratingIcon} ${card.rating_rb_overall} <span>(${card.rating_rb_count} reviews)</span></p>` : '';
   var producer = card.producer ? `<p>${card.producer}</p>` : '';
   var country = card.country ? `<p>${card.country}</p>` : '';
-  var price = card.price ? `<span>${card.price} <span>kr</span></span>` : '';
   var alcohol = card.alcohol_vol ? ` , <span>${card.alcohol_vol} <span>%</span></span>` : '';
+  var price = card.price ? `<span>${card.price} <span>kr</span></span>` : '';
   var price_and_alcohol = price != '' ? `<p>${price} ${alcohol}</p>` : '';
-  var systembolagetlink =  card.sysid ? `<a target="_blank" href="https://www.ratebeer.com/beer/${item.sysid}">bolaget</a>` : '';
-  var img = card.id ? `<img src="https://systembevakningsagenten.se/assets/images/product/id/${card.id}.jpg" onerror="this.style.display='none'">` : '';
-
+  var systembolagetUrl =  card.id ? ` https://www.systembolaget.se/${item.sysid}` : '';
+  var img = card.id ? `<img src="https://systembevakningsagenten.se/assets/images/product/id/${card.id}.png" onerror="this.style.display='none'">` : '';
+  // var ratebeerLinkEl =  card.sysid ? `<a target="_blank" href="https://www.ratebeer.com/beer/${item.sysid}">Ratebeer</a>` : '';
+ 
   var view = `
     <article class="item">
       <header>
-        <p class="title">${card.name}</p>
+        <a href="${systembolagetUrl}">${card.name}</a>
       </header>
       ${img}
       ${rating}
