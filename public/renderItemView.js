@@ -24,9 +24,9 @@ function renderItemView(item) {
   // var rating = item.rating_rb_overall ? `<p class="rating">${ratingIcon} ${item.rating_rb_overall} <span>(${item.rating_rb_count} reviews)</span></p>` : '';
   var producer = item.producer ? `<p>${item.producer}</p>` : '';
   var country = item.country ? `<p>${item.country}</p>` : '';
-  var alcohol = item.alcohol_vol ? ` , <span>${item.alcohol_vol}<span class="percentage-char">%</span></span>` : '';
+  var alcohol = item.alcohol_vol ? `<span>${item.alcohol_vol}<span class="percentage-char">%</span></span>` : '';
   var price = item.price ? `<span>${item.price} <span class="kr">kr</span></span>` : '';
-  var price_and_alcohol = price != '' ? `<p>${price} ${alcohol}</p>` : '';
+  var price_and_alcohol = price != '' ? `<p>${price} | ${alcohol}</p>` : '';
   var systembolagetUrl =  item.id ? ` https://www.systembolaget.se/${item.sysid}` : '';
   var img = item.id ? `<img src="https://systembevakningsagenten.se/assets/images/product/id/${item.id}.png" onerror="this.style.display='none'">` : '';
   
