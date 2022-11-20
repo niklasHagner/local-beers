@@ -46,11 +46,10 @@ function renderItemView(item) {
   let salesInfo = "";
   switch(item.class) {
     case "BS": salesInfo = "beställningssortiment"; break;
-    // case "TSE": salesInfo = "exklusivt sortiment"; break;
+    case "TSE": salesInfo = "exklusivt / små partier"; break;
     case "TST": salesInfo = "begränsad mängd"; break;
     case "TSV": salesInfo = "begränsad tid"; break;
-    case "TSLS": salesInfo = "lokalt och småksaligt"; break;
-    case "TSS": salesInfo = "säsongsprodukt"; break;
+    default: salesInfo = "";
   }
  
   var view = `
